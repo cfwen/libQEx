@@ -27,6 +27,10 @@ endif()
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+if (MSVC)
+    add_definitions(-D_USE_MATH_DEFINES)
+endif ()
+
 find_package (OpenMesh REQUIRED)
 
 set (SOURCES "")

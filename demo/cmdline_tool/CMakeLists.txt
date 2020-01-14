@@ -37,21 +37,18 @@ list (APPEND CMDLINE_TOOL_LIBRARIES
 )
 list (APPEND CMDLINE_TOOL_LIBRARY_DIRS ${OPEMESH_LIBRARY_DIR})
 
+add_executable (cmdline_tool ${CMDLINE_TOOL_SOURCES})
 
+target_link_libraries(cmdline_tool ${CMDLINE_TOOL_LIBRARIES})
 
-
+set_target_properties(cmdline_tool
+    PROPERTIES
+    INCLUDE_DIRECTORIES "${CMDLINE_TOOL_INCLUDE_DIRS}"
+)
 
 if (NOT WIN32 )
-
-  add_executable (cmdline_tool ${CMDLINE_TOOL_SOURCES})
-
-  target_link_libraries(cmdline_tool ${CMDLINE_TOOL_LIBRARIES})
-
-  set_target_properties(cmdline_tool
-      PROPERTIES
-      INCLUDE_DIRECTORIES "${CMDLINE_TOOL_INCLUDE_DIRS}"
-      COMPILE_FLAGS "-Wall -Wextra -pedantic -std=c++98 -Wno-long-long"
-  )
-
+set_target_(cmdline_tool
+    PROPERTIES
+    COMPILE_FLAGS "-Wall -Wextra -pedantic -std=c99"
+)
 endif()
-

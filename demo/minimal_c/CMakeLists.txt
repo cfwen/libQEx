@@ -37,16 +37,19 @@ list (APPEND DEMO_MINIMAL_C_LIBRARIES
     )
 list (APPEND DEMO_MINIMAL_C_LIBRARY_DIRS ${OPEMESH_LIBRARY_DIR})
 
+
+add_executable (demo_minimal_c ${DEMO_MINIMAL_C_SOURCES})
+
+target_link_libraries(demo_minimal_c ${DEMO_MINIMAL_C_LIBRARIES})
+
+set_target_properties(demo_minimal_c
+    PROPERTIES
+    INCLUDE_DIRECTORIES "${DEMO_MINIMAL_C_INCLUDE_DIRS}"
+)
+
 if (NOT WIN32 )
-
-  add_executable (demo_minimal_c ${DEMO_MINIMAL_C_SOURCES})
-
-  target_link_libraries(demo_minimal_c ${DEMO_MINIMAL_C_LIBRARIES})
-
-  set_target_properties(demo_minimal_c
-      PROPERTIES
-      INCLUDE_DIRECTORIES "${DEMO_MINIMAL_C_INCLUDE_DIRS}"
-      COMPILE_FLAGS "-Wall -Wextra -pedantic -std=c99"
-  )
-
+set_target_(demo_minimal_c
+    PROPERTIES
+    COMPILE_FLAGS "-Wall -Wextra -pedantic -std=c99"
+)
 endif()
